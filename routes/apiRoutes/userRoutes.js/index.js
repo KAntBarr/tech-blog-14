@@ -22,7 +22,7 @@ router.route('/')
 
             res
                 .status(200)
-                .json({ user: dbUserData, message: 'You are now logged in!' });
+                .json({ user: user, message: 'You are now logged in!' });
         } catch (err) {
             console.log(err);
             res.status(500).render('login', { failedCreation: true });
