@@ -34,6 +34,19 @@ async function getCommentByID(id) {
   }
 }
 
+async function getCommentPostByID(id) {
+  try {
+    await checkComment(id);
+    const comment = await Comment.findByPk(id, {
+      include: [Post],
+    });
+    return comment.get({ plain: true });
+  } catch (error) {
+    console.log(error);
+    throw new Error("comment had an error being found");
+  }
+}
+
 async function createComment(body) {
   try {
     const comment = await Comment.create({
@@ -87,6 +100,7 @@ module.exports = {
   checkComment,
   getComments,
   getCommentByID,
+  getCommentPostByID,
   createComment,
   updateComment,
   deleteComment,

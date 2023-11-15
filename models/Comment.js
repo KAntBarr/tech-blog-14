@@ -16,6 +16,10 @@ Comment.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
+        created_on: {
+            type: DataTypes.BIGINT,
+            allowNull: false,
+        },
         post_id: {
             type: DataTypes.UUID,
             references: {

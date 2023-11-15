@@ -17,7 +17,7 @@ async function getUsers() {
   // admin privileges
   try {
     const users = await User.findAll();
-    return users;
+    return users.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("there was an error getting users");
@@ -29,7 +29,7 @@ async function getUsersPosts() {
     const users = await User.findAll({
       include: [Post],
     });
-    return users;
+    return users.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("there was an error getting users and posts");
@@ -41,7 +41,7 @@ async function getUsersAll() {
     const users = await User.findAll({
       include: [Comment, Post],
     });
-    return users;
+    return users.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("there was an error getting users, comments, and posts");
@@ -94,7 +94,7 @@ async function createUser(body) {
       email: body.email,
       password: body.password,
     });
-    return user;
+    return user.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("user had an error being created");
@@ -109,7 +109,7 @@ async function updateUser(id, body) {
       email: body.email,
     });
     user = await checkUser(id);
-    return user;
+    return user.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("user had an error updating");
@@ -123,7 +123,7 @@ async function updateUserPassword(id, body) {
       password: body.password,
     });
     user = await checkUser(id);
-    return user;
+    return user.get({ plain: true });
   } catch (error) {
     console.log(error);
     throw new Error("user had an error updating password");

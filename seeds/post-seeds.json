@@ -1,0 +1,44 @@
+[
+    {
+        "post_title": "honda_accord_task_1",
+        "post_content": "test",
+        "created_on": 1699679280000,
+        "user_id": ""
+    },
+    {
+        "post_title": "honda_accord_task_2",
+        "post_content": "test",
+        "created_on": 1699506480000,
+        "user_id": ""
+    },
+    {
+        "post_title": "jeep_grand_task_1",
+        "post_content": "test",
+        "created_on": 1699679280000,
+        "user_id": ""
+    },
+    {
+        "post_title": "bmw_428i_task_1",
+        "post_content": "test",
+        "created_on": 1699679280000,
+        "user_id": ""
+    },
+    {
+        "post_title": "nissan_versa_task_1",
+        "post_content": "test",
+        "created_on": 1699679280000,
+        "user_id": ""
+    },
+    {
+        "post_title": "nissan_altima_task_1",
+        "post_content": "test",
+        "created_on": 1699506480000,
+        "user_id": ""
+    },
+    {
+        "post_title": "honda_rebel_task_1",
+        "post_content": "test",
+        "created_on": 1699506480000,
+        "user_id": ""
+    }
+]
