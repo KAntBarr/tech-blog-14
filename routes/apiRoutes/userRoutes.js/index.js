@@ -20,9 +20,11 @@ router.route('/')
                 req.session.cookie
             );
 
-            res
-                .status(200)
-                .json({ user: user, message: 'You are now logged in!' });
+            req.session.lastView = 'home';
+
+            req.session.lastMessage = 'You are now logged in!';
+
+            res.render(req.session.lastView, { message: req.session.lastMessage, loggedIn: req.session.loggedIn });
         } catch (err) {
             console.log(err);
             res.status(500).render('login', { failedCreation: true });
@@ -41,14 +43,16 @@ router.post('/login', async (req, res) => {
         const dbUserData = await userController.checkUserByEmail(req.body.email);
 
         if (!dbUserData) {
-            res.render('login', { failedLogin: true });
+            req.session.lastMessage = "Incorrect email or password, please try again";
+            res.render('login', { failedLogin: true, message: req.session.lastMessage });
             return;
         }
 
         const validPassword = await dbUserData.checkPassword(req.body.password);
 
         if (!validPassword) {
-            res.render('login', { failedLogin: true });
+            req.session.lastMessage = "Incorrect email or password, please try again";
+            res.render('login', { failedLogin: true, message: req.session.lastMessage });
             return;
         }
 
@@ -59,8 +63,13 @@ router.post('/login', async (req, res) => {
                 'File: user-routes.js ~ req.session.save ~ req.session.cookie',
                 req.session.cookie
             );
-
-            res.render('home');
+    
+            req.session.lastView = 'home';
+    
+            req.session.lastMessage = "your in the mainframe!";
+    
+            console.log("user logged in-------");
+            res.render(req.session.lastView, { message: req.session.lastMessage, loggedIn: req.session.loggedIn });
         });
     } catch (err) {
         console.log(err);
@@ -68,13 +77,14 @@ router.post('/login', async (req, res) => {
     }
 })
 
-router.post('/logout', (req, res) => {
+router.post('/logout', async (req, res) => {
     if (req.session.loggedIn) {
         req.session.destroy(() => {
-            res.status(204).end();
+            console.log("user logged out------");
+            res.render('login');
         });
     } else {
-        res.status(404).end();
+        res.render('login');
     }
 })
 
