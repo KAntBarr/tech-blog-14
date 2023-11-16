@@ -11,23 +11,27 @@ router.route('/')
             console.log(user);
 
 
-            await req.session.save();
+            req.session.save(() => {
+                req.session.loggedIn = true;
+                req.session.userId = user.id;
+                console.log(
+                    'File: user-routes.js ~ req.session.save ~ req.session.cookie',
+                    req.session.cookie
+                );
 
-            req.session.loggedIn = true;
-            req.session.userId = user.id;
-            console.log(
-                'File: user-routes.js ~ req.session.save ~ req.session.cookie',
-                req.session.cookie
-            );
+                req.session.lastView = 'home';
+                req.session.lastMessage = 'You are now logged in!';
+                req.session.failedSignUp = false;
+                req.session.failedLogin = false;
 
-            req.session.lastView = 'home';
-
-            req.session.lastMessage = 'You are now logged in!';
-
-            res.render(req.session.lastView, { message: req.session.lastMessage, loggedIn: req.session.loggedIn });
+                res.status(200).json(user);
+            });
         } catch (err) {
             console.log(err);
-            res.status(500).render('login', { failedCreation: true });
+            req.session.lastView = 'login';
+            req.session.failedSignUp = true;
+            req.session.failedLogin = false;
+            res.status(500).json(err);
         }
     })
 
@@ -63,16 +67,17 @@ router.post('/login', async (req, res) => {
                 'File: user-routes.js ~ req.session.save ~ req.session.cookie',
                 req.session.cookie
             );
-    
+
             req.session.lastView = 'home';
-    
+
             req.session.lastMessage = "your in the mainframe!";
-    
+
             console.log("user logged in-------");
-            res.render(req.session.lastView, { message: req.session.lastMessage, loggedIn: req.session.loggedIn });
         });
     } catch (err) {
         console.log(err);
+        req.session.failedSignUp = false;
+        req.session.failedLogin = true;
         res.status(500).json(err);
     }
 })
