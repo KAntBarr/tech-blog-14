@@ -12,7 +12,7 @@ router.route('/')
 
 
             req.session.save(() => {
-                req.session.loggedIn = true;
+                req.session.logged_in = true;
                 req.session.userId = user.id;
                 console.log(
                     'File: user-routes.js ~ req.session.save ~ req.session.cookie',
@@ -61,7 +61,7 @@ router.post('/login', async (req, res) => {
         }
 
         req.session.save(() => {
-            req.session.loggedIn = true;
+            req.session.logged_in = true;
             req.session.userId = dbUserData.id;
             console.log(
                 'File: user-routes.js ~ req.session.save ~ req.session.cookie',
@@ -83,7 +83,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/logout', async (req, res) => {
-    if (req.session.loggedIn) {
+    if (req.session.logged_in) {
         req.session.destroy(() => {
             console.log("user logged out------");
             res.render('login');
