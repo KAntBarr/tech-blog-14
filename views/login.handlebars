@@ -1,9 +1,10 @@
 {{#if isLogin}}
-{{#if failedLogin}}
-<h2>{{message}}</h2>
-{{/if}}
+
 <div class="">
   <h2 class="">Login</h2>
+  {{#if failedLogin}}
+  <h2>{{message}}</h2>
+  {{/if}}
   <form class="login-form">
     <div class="">
       <label for="email-login">Email:</label>
@@ -18,12 +19,14 @@
     </div>
   </form>
 </div>
+
 {{else}}
-{{#if failedSignUp}}
-<h2>{{message}}</h2>
-{{/if}}
+
 <div class="">
   <h2 class="">Signup</h2>
+  {{#if failedSignUp}}
+  <h2>{{message}}</h2>
+  {{/if}}
   <form class="signup-form">
     <div class="">
       <label for="username-signup">Username:</label>
@@ -42,6 +45,7 @@
     </div>
   </form>
 </div>
+
 {{/if}}
 
 <script src="./js/login.js"></script>
