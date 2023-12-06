@@ -15,7 +15,48 @@
 </head>
 
 <body class="">
-    
+    <header class="display-flex justify-space-between align-center p-2">
+        <nav class="navbar navbar-expand-sm navbar-dark" id="neubar" style="
+      border-radius: 8px;
+
+    ">
+            <div class="container">
+                <a class="navbar-brand" href="/"><img src="" height="60" /></a>
+                <h1 class="">Tech Social</h1>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav ms-auto ">
+
+                        {{#if logged_in}}
+                        <li class="nav-item">
+                            <a class="nav-link mx-1 my-1 neubar-button" aria-current="page" href="/">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-1 my-1 neubar-button" href="/api/users/profile">Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-1 my-1 neubar-button" href="/logout">Sign Out</a>
+                        </li>
+                        {{else}}
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 my-1 neubar-button" href="/">Login</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link mx-2 my-1 neubar-button" href="/signup">Sign Up</a>
+                        </li>
+                        {{/if}}
+
+
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
 
     <main class="">
         {{{ body }}}
