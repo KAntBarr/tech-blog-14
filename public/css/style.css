@@ -544,3 +544,85 @@ text-align: right;
 text-transform: uppercase;
 }
 
+#neubar {
+  background: #27374d;
+}
+
+.neubar-button {
+  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 2px 2px 4px 2px rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  text-shadow: 
+    -1px -1px 0 #000, /* Top-left */
+    1px -1px 0 #000, /* Top-right */
+    -1px 1px 0 #000, /* Bottom-left */
+    1px 1px 0 #000; /* Bottom-right */
+}
+
+.neubar-button:hover {
+  box-shadow: 2px 2px 4px 2px rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  text-shadow: 
+    -1px -1px 0 #fff, /* Top-left */
+    1px -1px 0 #fff, /* Top-right */
+    -1px 1px 0 #fff, /* Bottom-left */
+    1px 1px 0 #fff; /* Bottom-right */
+}
+
+.geeksGarage {
+  color: rgb(255, 255, 255);
+  text-shadow: 
+    -1px -1px 0 #000, /* Top-left */
+    1px -1px 0 #000, /* Top-right */
+    -1px 1px 0 #000, /* Bottom-left */
+    1px 1px 0 #000; /* Bottom-right */
+}
+
+.delete-btn:hover {
+  border: 2px solid black;
+}
+
+.car-title {
+  background: #9db2bf;
+  border: 1px solid black;
+  border-radius: 7px;
+  box-shadow: 2px 2px 4px 2px rgb(255, 255, 255);
+  color: rgb(255, 255, 255);
+  font-weight: 500;
+  text-shadow: 
+    -1px -1px 0 #000, /* Top-left */
+    1px -1px 0 #000, /* Top-right */
+    -1px 1px 0 #000, /* Bottom-left */
+    1px 1px 0 #000; /* Bottom-right */
+}
+
+.car-view-title {
+  color: #9db2bf;
+  font-size: 30px;
+  font-weight: 700;
+  text-shadow: 
+    -1px -1px 0 #000, /* Top-left */
+    1px -1px 0 #000, /* Top-right */
+    -1px 1px 0 #000, /* Bottom-left */
+    1px 1px 0 #000; /* Bottom-right */
+}
+
+.login-message {
+  background: #9db2bf;
+  color: red !important;
+  border-radius: 7px;
+  border: 1px solid white;
+  font-weight: 700;
+  text-align: center;
+  text-shadow: 
+    -1px -1px 0 #000, /* Top-left */
+    1px -1px 0 #000, /* Top-right */
+    -1px 1px 0 #000, /* Bottom-left */
+    1px 1px 0 #000; /* Bottom-right */
+}
+
+body {
+  background-color: #dde6ed;
+}
