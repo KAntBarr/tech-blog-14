@@ -1,38 +1,21 @@
 const router = require('express').Router();
 const withAuth = require('../utils/auth');
+const {
+  showHome,
+  showDashboard,
+  showProfile,
+  showLogin,
+  showSignup
+} = require('../../../controllers/homeController');
 
-router.get('/', (req, res) => {
-  res.render('home', { message: 'Welcome Home Mr. Stark' });
-});
+router.get('/', showHome);
 
-router.get('/dashboard', withAuth, (req, res) => {
-  res.render('dashboard');
-});
+router.get('/dashboard', withAuth, showDashboard);
 
-router.get('/profile', withAuth, (req, res) => {
-  res.render('profile');
-})
+router.get('/profile', withAuth, showProfile)
 
-router.get('/login', (req, res) => {
-  const loginObj = {
-    message: req.session.lastMessage,
-    isLogin: true,
-    failedLogin: req.session.failedLogin,
-    failedSignUp: req.session.failedSignUp
-  }
+router.get('/login', showLogin);
 
-  res.render('login', loginObj);
-});
-
-router.get('/signup', (req, res) => {
-  const loginObj = {
-    message: req.session.lastMessage,
-    isLogin: false,
-    failedLogin: req.session.failedLogin,
-    failedSignUp: req.session.failedSignUp
-  }
-
-  res.render('login', loginObj);
-})
+router.get('/signup', showSignup)
 
 module.exports = router;

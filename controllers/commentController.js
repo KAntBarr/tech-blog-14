@@ -1,7 +1,61 @@
+const { User, Comment, Post } = require("../models");
 
-const withAuth = require('../utils/auth');
+async function checkComment(id) {
+  try {
+    const comment = await Comment.findByPk(id);
+    if (!comment) {
+      throw new Error("comment does not exist");
+    }
+    return comment;
+  } catch (error) {
+    console.log(error);
+    throw Error(error);
+  }
+}
 
+async function createComment(req, res) {
+  try {
+    const comment = await Comment.create({
+      content: req.body.content,
+      user_id: req.body.user_id,
+      post_id: req.body.post_id,
+    });
+    // return comment.get({ plain: true });
+    res.status(200).json(comment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
 
+async function updateComment(req, res) {
+  try {
+    const comment = await checkComment(req.body.commentId);
+    comment.content = req.body.content;
+    await comment.save();
+    // await comment.update({
+    //   content: req.body.content,
+    //   comment_content: req.body.comment_content,
+    // });
+    res.status(200).json(comment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
+async function deleteComment(req, res) {
+  try {
+    const comment = await checkComment(req.body.commentId);
+    await comment.destroy();
+    // console.log("deleted comment");
+    // return comment.get({ plain: true });
+    res.status(200).json(comment);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
 
 module.exports = {
   createComment,
