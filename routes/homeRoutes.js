@@ -6,7 +6,7 @@ const {
   showProfile,
   showLogin,
   showSignup
-} = require('../../../controllers/homeController');
+} = require('../controllers/homeController');
 
 router.get('/', showHome);
 
