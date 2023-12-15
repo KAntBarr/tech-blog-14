@@ -4,5 +4,12 @@ module.exports = {
       // We use the 'toLocaleTimeString()' method to format the time as H:MM:SS AM/PM
       return date.toLocaleTimeString();
     },
+    loop: (n, options) => {
+      let ret = '';
+      for (let i = 0; i < n; i++) {
+        ret += options.fn(i);
+      }
+      return ret;
+    }
   };
   

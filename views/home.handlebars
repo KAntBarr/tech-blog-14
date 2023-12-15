@@ -1,9 +1,9 @@
-<h1 class="">{{message}}</h1>
+<h1 class="text-center">{{message}}</h1>
 
 <section class="d-flex my-3" style="justify-content: space-around;">
-  <h2 class="d-inline" id="carInfoStore" data-userid="{{user_id}}">Cars</h2>
+  <h2 class="d-inline" id="postInfoStore" data-userid="{{user_id}}">Trending Posts</h2>
   <div>
-    <button class="btn btn-outline-secondary" id="createCarButton">
+    <button class="btn btn-outline-secondary" id="createPostButton">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
         viewBox="0 0 16 16">
         <path
@@ -18,7 +18,10 @@
     {{!-- {{#each posts as |post|}}
     {{> post-details}}
     {{/each}} --}}
+    {{!-- {{> post-details}} --}}
+    {{#loop 5}}
     {{> post-details}}
+    {{/loop}}
   </section>
 </section>
 
@@ -54,4 +57,5 @@
   </div>
 </div>
 
-{{!-- <script src="/js/userpage.js"></script> --}}
+{{!--
+<script src="/js/userpage.js"></script> --}}

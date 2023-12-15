@@ -10,13 +10,13 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 
-<body class="">
-    <header class="display-flex justify-space-between align-center p-2">
+<body style="padding-top: 80px;">
+    <header class="p-2 fixed-top">
         <nav class="navbar navbar-expand-sm navbar-dark" id="neubar" style="
       border-radius: 8px;
 
     ">
-            <div class="container">
+            <div class="container" style="max-width: 100%!important;">
                 <a class="navbar-brand" href="/"><img src="" height="60" /></a>
                 <h1 class="geeksGarage">Geek Social</h1>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -50,7 +50,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link mx-1 my-1 neubar-button" href="/signup">Sign Up</a>
+                            <a class="nav-link mx-1 my-1 neubar-button d-sm-none d-md-block" href="/signup">Sign Up</a>
                         </li>
                         {{/if}}
 
