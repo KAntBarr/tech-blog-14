@@ -1,7 +1,10 @@
-<h1 class="text-center">{{message}}</h1>
+{{#if logged_in}}
+<h1 class="text-center">Welcome Home {{username}}!</h1>
+{{/if}}
 
 <section class="d-flex my-3" style="justify-content: space-around;">
-  <h2 class="d-inline" id="postInfoStore" data-userid="{{user_id}}">Trending Posts</h2>
+  <h2 class="d-inline" id="postInfoStore" data-userid="{{user_id}}">Trending Articles</h2>
+  {{#if logged_in}}
   <div>
     <button class="btn btn-outline-secondary" id="createPostButton">
       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
@@ -9,9 +12,10 @@
         <path
           d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
       </svg>
-      Add Think Piece
+      Add Contribution
     </button>
   </div>
+  {{/if}}
 </section>
 <section class="container">
   <section class="row justify-center">
@@ -19,9 +23,9 @@
     {{> post-details}}
     {{/each}} --}}
     {{!-- {{> post-details}} --}}
-    {{#loop 5}}
+    {{!-- {{#loop 2}}
     {{> post-details}}
-    {{/loop}}
+    {{/loop}} --}}
   </section>
 </section>
 
@@ -57,5 +61,6 @@
   </div>
 </div>
 
-{{!--
-<script src="/js/userpage.js"></script> --}}
+{{#if logged_in}}
+<script src="/js/userpage.js"></script>
+{{/if}}

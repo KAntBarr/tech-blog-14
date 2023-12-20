@@ -13,6 +13,18 @@ async function checkPost(id) {
   }
 }
 
+async function getPost(req, res) {
+  try {
+    await checkPost(id);
+    const post = await Post.findByPk(req.params.postId);
+    // return post.get({ plain: true });
+    res.status(200).json(post);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json(error);
+  }
+}
+
 async function createPost(req, res) {
   try {
     const post = await Post.create({
@@ -30,7 +42,7 @@ async function createPost(req, res) {
 
 async function updatePost(req, res) {
   try {
-    const post = await checkPost(req.body.postId);
+    const post = await checkPost(req.params.postId);
     post.post_title = req.body.post_title;
     post.post_content = req.body.post_content;
     await post.save();
@@ -47,7 +59,7 @@ async function updatePost(req, res) {
 
 async function deletePost(req, res) {
   try {
-    const post = await checkPost(req.body.postId);
+    const post = await checkPost(req.params.postId);
     await post.destroy();
     // console.log("deleted post");
     // return post.get({ plain: true });
@@ -60,6 +72,7 @@ async function deletePost(req, res) {
 
 
 module.exports = {
+  getPost,
   createPost,
   updatePost,
   deletePost,

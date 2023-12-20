@@ -30,7 +30,7 @@ async function createComment(req, res) {
 
 async function updateComment(req, res) {
   try {
-    const comment = await checkComment(req.body.commentId);
+    const comment = await checkComment(req.params.commentId);
     comment.content = req.body.content;
     await comment.save();
     // await comment.update({
@@ -46,7 +46,7 @@ async function updateComment(req, res) {
 
 async function deleteComment(req, res) {
   try {
-    const comment = await checkComment(req.body.commentId);
+    const comment = await checkComment(req.params.commentId);
     await comment.destroy();
     // console.log("deleted comment");
     // return comment.get({ plain: true });

@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const withAuth = require('../../../utils/auth');
 const {
+  getPost,
   createPost,
   updatePost,
   deletePost,
@@ -8,6 +9,6 @@ const {
 
 router.route('/').post(createPost);
 
-router.route('/:postId').put(withAuth, updatePost).delete(withAuth, deletePost);
+router.route('/:postId').get(getPost).put(withAuth, updatePost).delete(withAuth, deletePost);
 
 module.exports = router;

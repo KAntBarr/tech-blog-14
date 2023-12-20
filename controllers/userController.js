@@ -33,15 +33,16 @@ async function checkUserByEmail(email) {
 async function createUser(req, res) {
   try {
     const user = await User.create({
-      username: body.username,
-      email: body.email,
-      password: body.password,
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
     });
     // console.log(user);
 
     req.session.save(() => {
       req.session.logged_in = true;
       req.session.userId = user.id;
+      req.session.username = user.username;
       console.log(
         'File: user-routes.js ~ req.session.save ~ req.session.cookie',
         req.session.cookie
@@ -135,6 +136,7 @@ async function loginUser(req, res) {
     req.session.save(() => {
       req.session.logged_in = true;
       req.session.userID = user.id;
+      req.session.username = user.username;
       console.log(
         'File: user-routes.js ~ req.session.save ~ req.session.cookie',
         req.session.cookie
@@ -155,19 +157,10 @@ async function loginUser(req, res) {
   }
 }
 
-async function logoutUser(req, res) {
-  req.session.destroy(() => {
-    // console.log("---user logged out---");
-    // res.redirect('/');
-    res.status(200).send("user has been succesfully logged out");
-  });
-}
-
 module.exports = {
   createUser,
   updateUser,
   updateUserPassword,
   deleteUser,
   loginUser,
-  logoutUser
 }

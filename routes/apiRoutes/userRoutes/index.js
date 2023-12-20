@@ -6,7 +6,6 @@ const {
   updateUserPassword,
   deleteUser,
   loginUser,
-  logoutUser
 } = require('../../../controllers/userController');
 
 router.route('/').post(createUser);
@@ -16,6 +15,6 @@ router.route('/:userId').put(withAuth, updateUserPassword);
 
 router.route('/login').post(loginUser);
 
-router.route('/logout').post(withAuth, logoutUser);
+// router.route('/logout').get(withAuth, logoutUser);
 
 module.exports = router;
