@@ -1,6 +1,9 @@
 const { User, Comment, Post } = require("../models");
 
 async function showHome(req, res) {
+
+  
+
   res.render('home', {
     logged_in: req.session.logged_in,
     username: req.session.username
@@ -44,9 +47,8 @@ function showSignup(req, res) {
 async function signOutUser(req, res) {
   req.session.destroy(() => {
     // console.log("---user logged out---");
-    // res.redirect('/');
-    // res.status(200).send("user has been succesfully logged out");
     res.redirect('/');
+    // res.status(200).send("user has been succesfully logged out");
   });
 }
 

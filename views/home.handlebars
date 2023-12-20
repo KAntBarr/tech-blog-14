@@ -17,6 +17,7 @@
   </div>
   {{/if}}
 </section>
+
 <section class="container">
   <section class="row justify-center">
     {{!-- {{#each posts as |post|}}
@@ -29,38 +30,33 @@
   </section>
 </section>
 
-<!-- Create Car Modal -->
-<div class="modal fade" id="createCarModal" tabindex="-1" role="dialog" aria-labelledby="createCarModalLabel"
+<!-- Create Post Modal -->
+<div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="CreateCarModalLabel">Add New Car</h5>
+        <h5 class="modal-title" id="CreatePostModalLabel">Add New Post</h5>
       </div>
       <div class="modal-body">
-        <!-- Car creation form -->
+        <!-- Post creation form -->
         <form>
-          <label for="carMake">Make: </label>
-          <input type="text" id="carMake" class="form-control">
+          <label for="postTitle">Title: </label>
+          <input type="text" id="postTitle" class="form-control">
 
-          <label for="carModel">Model: </label>
-          <input type="text" id="carModel" class="form-control">
+          <label for="postContent">Content: </label>
+          <textarea type="text" id="postContent" class="form-control">
 
-          <label for="carYear">Year: </label>
-          <input type="text" id="carYear" class="form-control">
-
-          <label for="carMileage">Mileage: </label>
-          <input type="text" id="carMileage" class="form-control">
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="createCarButtonModal">Add Car</button>
+        <button type="button" class="btn btn-primary" id="createPostButtonModal">Add Post</button>
       </div>
     </div>
   </div>
 </div>
 
 {{#if logged_in}}
-<script src="/js/userpage.js"></script>
+<script src="/js/homepage.js"></script>
 {{/if}}
