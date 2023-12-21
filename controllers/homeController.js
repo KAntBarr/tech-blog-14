@@ -6,7 +6,8 @@ async function showHome(req, res) {
 
   res.render('home', {
     logged_in: req.session.logged_in,
-    username: req.session.username
+    username: req.session.username,
+    user_id: req.session.userID
   });
 }
 

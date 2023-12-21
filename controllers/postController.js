@@ -30,6 +30,7 @@ async function createPost(req, res) {
     const post = await Post.create({
       post_title: req.body.post_title,
       post_content: req.body.post_content,
+      created_on: req.body.created_on,
       user_id: req.body.user_id,
     });
     // return post.get({ plain: true });

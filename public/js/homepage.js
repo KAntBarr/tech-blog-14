@@ -10,28 +10,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     console.log('createPostForm hit');
 
-    const title = document.getElementById('postTitle').value.trim();
-    const content = document.getElementById('postContent').value.trim();
-    const createdOn = Date.now();
+    const post_title = document.getElementById('postTitle').value.trim();
+    const post_content = document.getElementById('postContent').value.trim();
+    const created_on = Date.now();
     const user_id = document.getElementById('postInfoStore').dataset.userid;
 
     try {
       const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
-          title,
-          content,
-          createdOn,
+          post_title,
+          post_content,
+          created_on,
           user_id
         }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
-
-      createPostModal.hide();
-
+      
       if (response.ok) {
+        createPostModal.hide();
         // console.log('post was created');
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/`);
