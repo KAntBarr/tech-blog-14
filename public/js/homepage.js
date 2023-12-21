@@ -98,4 +98,24 @@ document.addEventListener('DOMContentLoaded', () => {
     createPostButtonModal.addEventListener('click', createPostButtonModalHandler);
   }
 
+  document.getElementById('postContent').addEventListener('input', function () {
+    const maxChars = 1000; // Set your desired characters limit
+    const charCount = this.value.length;
+
+    if (charCount > maxChars) {
+      // Slice the text to the maximum allowed characterss
+      this.value = this.value.slice(0, maxChars);
+    }
+  });
+
+  document.getElementById('postTitle').addEventListener('input', function () {
+    const maxChars = 40; // Set your desired characters limit
+    const charCount = this.value.length;
+
+    if (charCount > maxChars) {
+      // Slice the text to the maximum allowed characterss
+      this.value = this.value.slice(0, maxChars);
+    }
+  });
+
 });
