@@ -11,8 +11,15 @@
                 ">{{post_content}}</textarea>
                 <div class="widget-49-meeting-action mt-1" style="
                             display: flex;
-                            justify-content: flex-end;
+                            justify-content: space-between;
                         ">
+                    <div class="widget-49 d-flex">
+                        <div class="widget-49-title-wrapper align-items-end">
+                            <div class="widget-49-meeting-info">
+                                <span class="widget-49-meeting-time">Created: {{returnFormatDate created_on}}</span>
+                            </div>
+                        </div>
+                    </div>
                     <a href="/api/posts/{{id}}" class="btn btn-sm btn-flash-border-primary">View Comments</a>
                 </div>
             </div>
