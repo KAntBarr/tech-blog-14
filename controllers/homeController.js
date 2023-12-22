@@ -26,9 +26,31 @@ async function showHome(req, res) {
 
 async function showDashboard(req, res) {
   try {
-    res.render('dashboard', {
-      logged_in: req.session.logged_in,
+
+    const posts = await Post.findAll({
+      where: {
+        user_id: req.session.userID,
+      }
     });
+
+    // console.log(posts);
+
+    if (posts) {
+      const plainPosts = posts.map(post => {
+        let result = post.get({ plain: true });
+        result['is_dashboard'] = true;
+        return result;
+      });
+
+      res.render('dashboard', {
+        logged_in: req.session.logged_in,
+        username: req.session.username,
+        user_id: req.session.userID,
+        posts: plainPosts
+      });
+    } else {
+      throw new Error("problem getting user's posts");
+    }
   } catch (error) {
     console.log(error);
     throw Error(error);
