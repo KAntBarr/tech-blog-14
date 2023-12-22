@@ -1,1 +1,51 @@
-<h2>Welcome To The Dashboard Dawg</h2>
+<section class="d-flex my-3" style="justify-content: space-around;">
+  <h2 class="d-inline" id="postInfoStore" data-userid="{{user_id}}">Personal Collection</h2>
+  <div>
+    <button class="btn btn-outline-secondary" id="createPostButton">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus"
+        viewBox="0 0 16 16">
+        <path
+          d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" />
+      </svg>
+      Add Contribution
+    </button>
+  </div>
+</section>
+
+<section class="container">
+  <section class="row justify-center">
+    {{#each posts as |post|}}
+    {{> post-details}}
+    {{/each}}
+  </section>
+</section>
+
+<!-- Create Post Modal -->
+<div class="modal fade" id="createPostModal" tabindex="-1" role="dialog" aria-labelledby="createPostModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="CreatePostModalLabel">Add New Post</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Post creation form -->
+        <form>
+          <label for="postTitle">Title: </label>
+          <input type="text" id="postTitle" class="form-control">
+
+          <label for="postContent">Content: </label>
+          {{!-- <input type="text" id="postContent" class="form-control" style="height: 20vh;"> --}}
+          <textarea class="form-control modal-textarea" id="postContent" rows="5"></textarea>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="createPostButtonModal">Add Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="./js/dashboard.js"></script>

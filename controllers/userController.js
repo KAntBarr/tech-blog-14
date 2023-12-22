@@ -41,17 +41,17 @@ async function createUser(req, res) {
 
     req.session.save(() => {
       req.session.logged_in = true;
-      req.session.userId = user.id;
+      req.session.userID = user.id;
       req.session.username = user.username;
       console.log(
         'File: user-routes.js ~ req.session.save ~ req.session.cookie',
         req.session.cookie
       );
 
-      req.session.lastView = 'home';
-      req.session.lastMessage = 'You are now logged in!';
-      req.session.failedSignUp = false;
-      req.session.failedLogin = false;
+      // req.session.lastView = 'home';
+      // req.session.lastMessage = 'You are now logged in!';
+      // req.session.failedSignUp = false;
+      // req.session.failedLogin = false;
 
       res.status(200).json(user);
     });

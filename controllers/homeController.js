@@ -1,26 +1,49 @@
 const { User, Comment, Post } = require("../models");
 
 async function showHome(req, res) {
+  try {
+    const posts = await Post.findAll();
 
-  
+    // console.log(posts);
 
-  res.render('home', {
-    logged_in: req.session.logged_in,
-    username: req.session.username,
-    user_id: req.session.userID
-  });
+    if (posts) {
+      const plainPosts = posts.map(post => post.get({ plain: true }));
+
+      res.render('home', {
+        logged_in: req.session.logged_in,
+        username: req.session.username,
+        user_id: req.session.userID,
+        posts: plainPosts
+      });
+    } else {
+      throw new Error("problem getting all posts");
+    }
+  } catch (error) {
+    console.log(error);
+    throw Error(error);
+  }
 }
 
 async function showDashboard(req, res) {
-  res.render('dashboard', {
-    logged_in: req.session.logged_in,
-  });
+  try {
+    res.render('dashboard', {
+      logged_in: req.session.logged_in,
+    });
+  } catch (error) {
+    console.log(error);
+    throw Error(error);
+  }
 }
 
 async function showProfile(req, res) {
-  res.render('profile', {
-    logged_in: req.session.logged_in,
-  });
+  try {
+    res.render('profile', {
+      logged_in: req.session.logged_in,
+    });
+  } catch (error) {
+    console.log(error);
+    throw Error(error);
+  }
 }
 
 function showLogin(req, res) {
