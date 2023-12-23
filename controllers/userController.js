@@ -37,7 +37,7 @@ async function createUser(req, res) {
       email: req.body.email,
       password: req.body.password,
     });
-    // console.log(user);
+    console.log(user);
 
     req.session.save(() => {
       req.session.logged_in = true;
@@ -102,7 +102,10 @@ async function deleteUser(req, res) {
     await user.destroy();
     // console.log("deleted user");
     // return user.get({ plain: true });
-    res.status(200).json(user);
+    // res.status(200).json(user);
+    req.session.destroy(() => {
+      res.redirect('/');
+    });
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
@@ -114,23 +117,13 @@ async function loginUser(req, res) {
     const user = await checkUserByEmail(req.body.email);
 
     if (!user) {
-      req.session.save(() => {
-        req.session.lastMessage = "Incorrect email or password, please try again";
-        req.session.failedLogin = true;
-        res.status(500).send("Incorrect email or password, please try again");
-        return;
-      })
+      throw new Error("Incorrect email or password");
     }
 
     const validPassword = user.checkPassword(req.body.password);
 
     if (!validPassword) {
-      req.session.save(() => {
-        req.session.lastMessage = "Incorrect email or password, please try again";
-        req.session.failedLogin = true;
-        res.status(500).send("Incorrect email or password, please try again");
-        return;
-      })
+      throw new Error("Incorrect email or password");
     }
 
     req.session.save(() => {
@@ -141,19 +134,13 @@ async function loginUser(req, res) {
         'File: user-routes.js ~ req.session.save ~ req.session.cookie',
         req.session.cookie
       );
-
-      // req.session.lastView = 'home';
-
-      // req.session.lastMessage = "your in the mainframe!";
-
-      // console.log("---user logged in---");
       res.status(200).json(user);
     });
-  } catch (err) {
+  } catch (error) {
     // req.session.failedSignUp = false;
     // req.session.failedLogin = true;
-    console.log(err);
-    res.status(500).json(err);
+    console.log(error);
+    res.status(500).json(error);
   }
 }
 

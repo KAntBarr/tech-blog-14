@@ -10,14 +10,14 @@
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="fullName">Username</label>
-                                <input type="text" class="form-control" id="username" placeholder="{{user.username}}"
+                                <input type="text" class="form-control" id="username" data-username="{{user.username}}" placeholder="{{user.username}}"
                                     required>
                             </div>
                         </div>
                         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div class="form-group">
                                 <label for="eMail">Email</label>
-                                <input type="email" class="form-control" id="eMail" placeholder="{{user.email}}" required>
+                                <input type="email" class="form-control" id="eMail" data-email="{{user.email}}" placeholder="{{user.email}}" required>
                             </div>
                         </div>
                     </div>
@@ -62,8 +62,8 @@
                 <!-- User Password update form -->
                 <form>
                     <label for="newPassword">New Password:</label>
-                    <input type="text" id="newPassword" class="form-control" required>
-
+                    <input type="password" id="newPassword" class="form-control" required>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

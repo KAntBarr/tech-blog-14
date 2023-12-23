@@ -4,19 +4,23 @@ const loginFormHandler = async (event) => {
   const email = document.querySelector('#email-login').value.trim();
   const password = document.querySelector('#password-login').value.trim();
 
-  if (email && password) {
-    const response = await fetch('/api/users/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
-    console.log('logged in, going to home');
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to log in.');
-      // document.location.replace('/login');
+  try {
+    if (email && password) {
+      const response = await fetch('/api/users/login', {
+        method: 'POST',
+        body: JSON.stringify({ email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (response.ok) {
+        // console.log('logged in, going to home');
+        document.location.replace('/');
+      } else {
+        throw new Error(response.statusText);
+      }
     }
+  } catch (error) {
+    console.error('Failed to log in:', error);
+    alert('Failed to log in\n' + error);
   }
 };
 
@@ -30,17 +34,21 @@ const signupFormHandler = async (event) => {
   if (username && email && password) {
     console.log('attempting to create user');
 
-    const response = await fetch('/api/users', {
-      method: 'POST',
-      body: JSON.stringify({ username, email, password }),
-      headers: { 'Content-Type': 'application/json' },
-    });
+    try {
+      const response = await fetch('/api/users', {
+        method: 'POST',
+        body: JSON.stringify({ username, email, password }),
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-    if (response.ok) {
-      document.location.replace('/');
-    } else {
-      alert('Failed to sign up.');
-      // document.location.replace('/signup');
+      if (response.ok) {
+        document.location.replace('/');
+      } else {
+        throw new Error(response.statusText);
+      }
+    } catch (error) {
+      console.error('Failed to sign up:', error);
+      alert('Failed to sign up\n' + error);
     }
   }
 };

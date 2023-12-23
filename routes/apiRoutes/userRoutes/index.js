@@ -11,7 +11,7 @@ const {
 router.route('/').post(createUser);
 
 router.route('/:userId').put(withAuth, updateUser).delete(withAuth, deleteUser);
-router.route('/:userId').put(withAuth, updateUserPassword);
+router.route('/:userId/password').put(withAuth, updateUserPassword);
 
 router.route('/login').post(loginUser);
 
