@@ -20,19 +20,17 @@ Comment.init(
             type: DataTypes.BIGINT,
             allowNull: false,
         },
-        user_id: {
-            type: DataTypes.UUID,
-            references: {
-              model: "user",
-              key: "id",
-            },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
           },
         post_id: {
             type: DataTypes.UUID,
             references: {
                 model: 'post',
                 key: 'id',
-            }
+            },
+            allowNull: false,
         }
     },
     {

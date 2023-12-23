@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     } catch (error) {
       console.error('Error creating post:', error);
-      alert('Failed to create post', error);
+      alert('Failed to create post\n' + error);
       // Handle unexpected errors
     }
   };
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         // Reload the page or update the UI as needed
         document.location.replace(`/`);
-        console.log(`Post ${postid} deleted`);
+        // console.log(`Post ${postid} deleted`);
       } else {
         console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
         alert('Failed to delete post');

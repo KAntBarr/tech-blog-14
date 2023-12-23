@@ -1,5 +1,4 @@
 const { User, Comment, Post } = require("../models");
-const { getAttributes } = require("../models/User");
 
 async function checkPost(id) {
   try {
@@ -16,17 +15,19 @@ async function checkPost(id) {
 
 async function getPost(req, res) {
   try {
-    let post = await checkPost(req.params.postId);
-    let comments = await Comment.findAll({
-      where: {
-        post_id: req.params.postId,
-      },
+    let post = await Post.findByPk(req.params.postId, {
       include: [
         {
           model: User,
           attributes: ['username']
         }
       ]
+    })
+    let comments = await Comment.findAll({
+      where: {
+        post_id: req.params.postId,
+      },
+      order: [['created_on', 'ASC']]
     });
     // return post.get({ plain: true });
     // res.status(200).json({ post, comments});
@@ -36,9 +37,11 @@ async function getPost(req, res) {
       comments = comments.map(comment => {
         return comment.get({ plain: true });
       });
+      // console.log(post);
       res.render('post', {
         logged_in: req.session.logged_in,
         username: req.session.username,
+        userId: req.session.userID,
         post,
         comments,
       })

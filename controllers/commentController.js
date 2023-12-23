@@ -17,8 +17,9 @@ async function createComment(req, res) {
   try {
     const comment = await Comment.create({
       content: req.body.content,
-      user_id: req.body.user_id,
+      username: req.body.username,
       post_id: req.body.post_id,
+      created_on: req.body.created_on
     });
     // return comment.get({ plain: true });
     res.status(200).json(comment);
