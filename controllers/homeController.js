@@ -2,7 +2,15 @@ const { User, Comment, Post } = require("../models");
 
 async function showHome(req, res) {
   try {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        },
+      ],
+      order: [['created_on', 'DESC']]
+    });
 
     // console.log(posts);
 
@@ -20,20 +28,24 @@ async function showHome(req, res) {
     }
   } catch (error) {
     console.log(error);
-    throw Error(error);
+    res.status(500).json(error);
+    // throw Error(error);
   }
 }
 
 async function showDashboard(req, res) {
   try {
-
     const posts = await Post.findAll({
-      where: {
-        user_id: req.session.userID,
-      }
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ],
+      order: [['created_on', 'DESC']]
     });
 
-    // console.log(posts);
+    console.log(posts);
 
     if (posts) {
       const plainPosts = posts.map(post => {
@@ -53,7 +65,8 @@ async function showDashboard(req, res) {
     }
   } catch (error) {
     console.log(error);
-    throw Error(error);
+    res.status(500).json(error);
+    // throw Error(error);
   }
 }
 
@@ -64,7 +77,8 @@ async function showProfile(req, res) {
     });
   } catch (error) {
     console.log(error);
-    throw Error(error);
+    res.status(500).json(error);
+    // throw Error(error);
   }
 }
 

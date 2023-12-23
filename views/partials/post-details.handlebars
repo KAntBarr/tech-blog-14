@@ -5,7 +5,7 @@
         </div>
         <div class="card-body pt-0">
             <div class="widget-49">
-                <textarea readonly class="px-1" style="
+                <textarea readonly rows="4" class="px-1" style="
                     width: 100%;
                     text-align: left;
                 ">{{post_content}}</textarea>
@@ -28,7 +28,8 @@
                     <div class="widget-49 d-flex">
                         <div class="widget-49-title-wrapper align-items-end">
                             <div class="widget-49-meeting-info">
-                                <span class="widget-49-meeting-time">Created: {{returnFormatDate created_on}}</span>
+                                <span class="widget-49-meeting-time text-center">Created by {{user.username}}<br>
+                                    {{returnFormatDate created_on}}</span>
                             </div>
                         </div>
                     </div>

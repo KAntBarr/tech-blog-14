@@ -16,6 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const user_id = document.getElementById('postInfoStore').dataset.userid;
 
     try {
+      if (post_title.length < 3 || post_content < 10) {
+        throw new Error(`${post_title < 3 ? 'Title' : 'Content'} is not long enough.`)
+      }
       const response = await fetch(`/api/posts`, {
         method: 'POST',
         body: JSON.stringify({
@@ -28,19 +31,20 @@ document.addEventListener('DOMContentLoaded', () => {
           'Content-Type': 'application/json',
         },
       });
-      
+
       if (response.ok) {
         createPostModal.hide();
         // console.log('post was created');
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/dashboard`);
       } else {
-        console.error('Failed to create post', response.status, response.statusText);
-        alert('Failed to create post');
+        throw new Error(response.statusText);
+        // console.error('Failed to create post', response.status, response.statusText);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
       console.error('Error creating post:', error);
+      alert('Failed to create post', error);
       // Handle unexpected errors
     }
   };

@@ -14,7 +14,7 @@ module.exports = {
       return ret;
     },
     returnFormatDate: (timestamp) => {
-      if (timestamp === null) {
+      if (timestamp === null || timestamp === undefined) {
         return 'Sometime';
       }
 

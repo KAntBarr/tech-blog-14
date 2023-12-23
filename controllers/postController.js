@@ -1,4 +1,5 @@
 const { User, Comment, Post } = require("../models");
+const { getAttributes } = require("../models/User");
 
 async function checkPost(id) {
   try {
@@ -15,10 +16,37 @@ async function checkPost(id) {
 
 async function getPost(req, res) {
   try {
-    await checkPost(id);
-    const post = await Post.findByPk(req.params.postId);
+    let post = await checkPost(req.params.postId);
+    let comments = await Comment.findAll({
+      where: {
+        post_id: req.params.postId,
+      },
+      include: [
+        {
+          model: User,
+          attributes: ['username']
+        }
+      ]
+    });
     // return post.get({ plain: true });
-    res.status(200).json(post);
+    // res.status(200).json({ post, comments});
+
+    if (post) {
+      post = post.get({ plain: true });
+      comments = comments.map(comment => {
+        return comment.get({ plain: true });
+      });
+      res.render('post', {
+        logged_in: req.session.logged_in,
+        username: req.session.username,
+        post,
+        comments,
+      })
+    } else {
+      throw new Error("problem getting a post with its potential comments");
+    }
+
+
   } catch (error) {
     console.log(error);
     res.status(500).json(error);
