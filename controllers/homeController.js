@@ -72,8 +72,12 @@ async function showDashboard(req, res) {
 
 async function showProfile(req, res) {
   try {
+    let user = await User.findByPk(req.session.userID);
+    user = user.get({ plain: true });
+
     res.render('profile', {
       logged_in: req.session.logged_in,
+      user,
     });
   } catch (error) {
     console.log(error);
