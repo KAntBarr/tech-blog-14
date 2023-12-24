@@ -91,6 +91,34 @@
   </div>
 </div>
 
+<!-- Update Post Modal -->
+<div class="modal fade" id="updatePostModal" tabindex="-1" role="dialog" aria-labelledby="updatePostModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updatePostModalLabel">Edit Post</h5>
+      </div>
+      <div class="modal-body">
+        <!-- Post creation form -->
+        <form>
+          <label for="postTitle">Title: </label>
+          <input type="text" id="postTitle" class="form-control" value="{{post.post_title}}">
+
+          <label for="postContent">Content: </label>
+          {{!-- <input type="text" id="postContent" class="form-control" style="height: 20vh;"> --}}
+          <textarea class="form-control modal-textarea" id="postContent" rows="5">{{post.post_content}}</textarea>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="updatePostButtonModal">Edit Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 {{#if logged_in}}
 <script src="/js/post.js"></script>
 {{/if}}

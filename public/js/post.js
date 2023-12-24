@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const createCommentModal = new bootstrap.Modal(document.getElementById('createCommentModal'));
   const createCommentButtonModal = document.getElementById('createCommentButtonModal');
   const updatePostButton = document.getElementById('updatePostButton');
-  // const updatePostModal = new bootstrap.Modal(document.getElementById('updatePostModal'));
+  const updatePostModal = new bootstrap.Modal(document.getElementById('updatePostModal'));
   const updatePostButtonModal = document.getElementById('updatePostButtonModal');
   const deleteButtons = document.querySelectorAll('.deleteCommentButton .deletePostButton');
 
@@ -81,40 +81,35 @@ document.addEventListener('DOMContentLoaded', () => {
     event.preventDefault();
     event.stopPropagation(); // Prevent the event from reaching parent elements
 
-    console.log('updatePostForm hit');
-
-    const make = document.getElementById('postMake').value.trim() || null;
-    const model = document.getElementById('postModel').value.trim() || null;
-    const year = document.getElementById('postYear').value.trim() || null;
-    const mileage = document.getElementById('postMileage').value.trim() || null;
+    const post_title = document.getElementById('postTitle').value.trim();
+    const post_content = document.getElementById('postContent').value.trim();
+    const user_id = document.getElementById('postInfoStore').dataset.userid;
     const postid = document.getElementById('postInfoStore').dataset.postid;
 
     try {
       const response = await fetch(`/api/posts/${postid}`, {
         method: 'PUT',
         body: JSON.stringify({
-          make,
-          model,
-          year,
-          mileage,
+          post_title,
+          post_content,
+          user_id
         }),
         headers: {
           'Content-Type': 'application/json',
         },
       });
 
-      updatePostModal.hide();
-
       if (response.ok) {
-        console.log('post was updated');
+        updatePostModal.hide();
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/api/posts/${postid}`);
       } else {
-        console.error('Failed to update post:', response.status, response.statusText);
+        throw new Error(response.statusText);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
       console.error('Error updating post:', error);
+      alert('Error updating post\n' + error);
       // Handle unexpected errors
     }
   };
