@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const updatePostButton = document.getElementById('updatePostButton');
   const updatePostModal = new bootstrap.Modal(document.getElementById('updatePostModal'));
   const updatePostButtonModal = document.getElementById('updatePostButtonModal');
-  const deleteButtons = document.querySelectorAll('.deleteCommentButton .deletePostButton');
+  const deletePostButton = document.querySelectorAll('.deletePostButton');
+  const deleteCommentButtons = document.querySelectorAll('.deleteCommentButton');
 
 
   const createCommentButtonModalHandler = async (event) => {
@@ -115,8 +116,8 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
 
-  if (deleteButtons) {
-    deleteButtons.forEach((button) => {
+  if (deleteCommentButtons) {
+    deleteCommentButtons.forEach((button) => {
       button.addEventListener('click', async (event) => {
         event.preventDefault();
         event.stopPropagation();

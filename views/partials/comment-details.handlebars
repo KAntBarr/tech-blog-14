@@ -12,7 +12,8 @@
                         ">
                     {{!-- {{#if is_dashboard}} --}}
                     {{!-- {{#if logged_in}} --}}
-                    <button class="deletePostButton btn btn-danger delete-btn" data-postid="{{id}}">
+                    {{!-- create a way to check if the comment creator is the same as the current user --}}
+                    <button class="deleteCommentButton btn btn-danger delete-btn" data-commentid="{{id}}">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                             class="bi bi-trash" viewBox="0 0 16 16">
                             <path
