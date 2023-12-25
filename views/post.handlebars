@@ -31,6 +31,7 @@
               </div>
               {{#if logged_in}}
               <div class="d-flex">
+                {{#if (eq post.user.username username)}}
                 <button class="deletePostButton btn btn-danger delete-btn" data-postid="{{post.id}}">
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash"
                     viewBox="0 0 16 16">
@@ -52,6 +53,7 @@
                     Edit
                   </button>
                 </div>
+                {{/if}}
                 <button type="button" id="addCommentButton" class="btn btn-primary">Add Comment</button>
               </div>
               {{/if}}
@@ -62,7 +64,7 @@
     </div>
 
     {{#each comments as |comment|}}
-    {{> comment-details}}
+    {{> comment-details currentUser=../username}}
     {{/each}}
   </section>
 </section>

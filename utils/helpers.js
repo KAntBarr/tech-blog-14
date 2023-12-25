@@ -29,6 +29,10 @@ module.exports = {
       //   // Handle the case where timestamp is not a valid number
       //   return 'A long time ago in a galaxy far far away....';
       // }
+    },
+    eq: function (arg1, arg2, options) {
+      if (arg1 === arg2) return true;
+      return false;
     }
   };
   

@@ -36,6 +36,9 @@ async function showHome(req, res) {
 async function showDashboard(req, res) {
   try {
     const posts = await Post.findAll({
+      where: {
+        user_id: req.session.userID,
+      },
       include: [
         {
           model: User,
