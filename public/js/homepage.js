@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createPostModal.hide();
         // console.log('post was created');
         // Handle success, e.g., show a success message or redirect to another page
-        document.location.replace(`/dashboard`);
+        document.location.replace(`/`);
       } else {
         throw new Error(response.statusText);
         // console.error('Failed to create post', response.status, response.statusText);

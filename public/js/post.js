@@ -77,6 +77,28 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  const deletePostHandler = async (postid) => {
+
+    try {
+      const response = await fetch(`/api/posts/${postid}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        // Reload the page or update the UI as needed
+        document.location.replace(`/`);
+      } else {
+        console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
+        alert('Failed to delete post');
+      }
+    } catch (error) {
+      console.error('Error deleting post:', error);
+    }
+  };
+
 
   const updatePostButtonModalHandler = async (event) => {
     event.preventDefault();
@@ -129,6 +151,25 @@ document.addEventListener('DOMContentLoaded', () => {
           const confirmDeletion = confirm('Are you sure you want to delete this comment?');
           if (confirmDeletion) {
             await deleteCommentHandler(commentId);
+          }
+        }
+      });
+    });
+  }
+
+  if (deletePostButton) {
+    deletePostButton.forEach((button) => {
+      button.addEventListener('click', async (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+
+        const postid = button.dataset.postid;
+        // console.log('attempting to delete', postid);
+        if (postid) {
+          // Confirm deletion if needed
+          const confirmDeletion = confirm('Are you sure you want to delete this post?');
+          if (confirmDeletion) {
+            await deletePostHandler(postid);
           }
         }
       });
