@@ -94,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (response.ok) {
-        console.log('user was updated');
+        // console.log('user was updated');
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/profile`);
       } else {

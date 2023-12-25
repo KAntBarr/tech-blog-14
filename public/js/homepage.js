@@ -64,11 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.location.replace(`/`);
         // console.log(`Post ${postid} deleted`);
       } else {
-        console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
-        alert('Failed to delete post');
+        throw new Error(response.statusText);
+        // console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
       }
     } catch (error) {
       console.error('Error deleting post:', error);
+      alert('Failed to delete post' + error);
     }
   };
 

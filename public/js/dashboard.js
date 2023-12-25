@@ -62,13 +62,13 @@ document.addEventListener('DOMContentLoaded', () => {
       if (response.ok) {
         // Reload the page or update the UI as needed
         document.location.replace(`/dashboard`);
-        console.log(`Post ${postid} deleted`);
       } else {
-        console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
-        alert('Failed to delete post');
+        throw new Error(response.statusText);
+        // console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
       }
     } catch (error) {
       console.error('Error deleting post:', error);
+      alert('Failed to delete post' + error);
     }
   };
 

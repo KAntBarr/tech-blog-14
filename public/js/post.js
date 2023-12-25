@@ -66,14 +66,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (response.ok) {
-        console.log(`Comment ${commentId} deleted`);
+        // console.log(`Comment ${commentId} deleted`);
         // Reload the page or update the UI as needed
         document.location.replace(`/api/posts/${postid}`);
       } else {
-        console.error(`Failed to delete comment ${commentId}`, response.status, response.statusText);
+        // console.error(`Failed to delete comment ${commentId}`, response.status, response.statusText);
+        throw new Error(response.statusText);
       }
     } catch (error) {
       console.error('Error deleting comment:', error);
+      alert('Failed to delete comment\n' + error);
     }
   };
 
@@ -91,11 +93,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reload the page or update the UI as needed
         document.location.replace(`/`);
       } else {
-        console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
-        alert('Failed to delete post');
+        // console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
+        throw new Error(response.statusText);
       }
     } catch (error) {
       console.error('Error deleting post:', error);
+      alert('Failed to delete post\n' + error);
     }
   };
 
