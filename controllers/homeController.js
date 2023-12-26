@@ -90,25 +90,15 @@ async function showProfile(req, res) {
 }
 
 function showLogin(req, res) {
-  const loginObj = {
-    message: req.session.lastMessage,
+  res.render('login', {
     isLogin: true,
-    failedLogin: req.session.failedLogin,
-    failedSignUp: req.session.failedSignUp
-  }
-
-  res.render('login', loginObj);
+  });
 }
 
 function showSignup(req, res) {
-  const loginObj = {
-    message: req.session.lastMessage,
+  res.render('login', {
     isLogin: false,
-    failedLogin: req.session.failedLogin,
-    failedSignUp: req.session.failedSignUp
-  }
-
-  res.render('login', loginObj);
+  });
 }
 
 async function signOutUser(req, res) {
