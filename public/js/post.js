@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/api/posts/${postid}`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Error creating comment:', error);
-      alert('Failed to create comment\n' + error);
+      console.error('Error creating comment:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to create comment\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
       // Handle unexpected errors
     }
   };
@@ -71,11 +71,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.location.replace(`/api/posts/${postid}`);
       } else {
         // console.error(`Failed to delete comment ${commentId}`, response.status, response.statusText);
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Error deleting comment:', error);
-      alert('Failed to delete comment\n' + error);
+      console.error('Error deleting comment:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to delete comment\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
     }
   };
 
@@ -94,11 +94,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.location.replace(`/`);
       } else {
         // console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Error deleting post:', error);
-      alert('Failed to delete post\n' + error);
+      console.error('Error deleting post:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to delete post\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
     }
   };
 
@@ -130,12 +130,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/api/posts/${postid}`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
-      console.error('Error updating post:', error);
-      alert('Error updating post\n' + error);
+      console.error('Error updating post:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Error updating post\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
       // Handle unexpected errors
     }
   };

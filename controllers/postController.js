@@ -52,7 +52,7 @@ async function getPost(req, res) {
 
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -68,7 +68,7 @@ async function createPost(req, res) {
     res.status(200).json(post);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -85,7 +85,7 @@ async function updatePost(req, res) {
     res.status(200).json(post);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -98,7 +98,7 @@ async function deletePost(req, res) {
     res.status(200).json(post);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 

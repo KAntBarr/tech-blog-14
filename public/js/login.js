@@ -15,12 +15,14 @@ const loginFormHandler = async (event) => {
         // console.log('logged in, going to home');
         document.location.replace('/');
       } else {
-        throw new Error(response.statusText);
+        // console.log(await response.json());
+        throw new Error((await response.json()).error);
+        // throw new Error(((await response.json()).error.replace(new RegExp('Error: ', 'g'), '')));
       }
     }
   } catch (error) {
-    console.error('Failed to log in:', error);
-    alert('Failed to log in\n' + error);
+    console.error('Failed to log in:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+    alert('Failed to log in\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
   }
 };
 
@@ -44,11 +46,11 @@ const signupFormHandler = async (event) => {
       if (response.ok) {
         document.location.replace('/');
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
       }
     } catch (error) {
-      console.error('Failed to sign up:', error);
-      alert('Failed to sign up\n' + error);
+      console.error('Failed to sign up:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to sign up\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
     }
   }
 };

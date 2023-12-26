@@ -38,13 +38,13 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
         // console.error('Failed to create post', response.status, response.statusText);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
-      console.error('Error creating post:', error);
-      alert('Failed to create post\n' + error);
+      console.error('Error creating post:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to create post\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
       // Handle unexpected errors
     }
   };
@@ -64,12 +64,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.location.replace(`/`);
         // console.log(`Post ${postid} deleted`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
         // console.error(`Failed to delete post ${postid}`, response.status, response.statusText);
       }
     } catch (error) {
-      console.error('Error deleting post:', error);
-      alert('Failed to delete post' + error);
+      console.error('Error deleting post:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Failed to delete post' + String(error).replace(new RegExp('Error: ', 'g'), ''));
     }
   };
 

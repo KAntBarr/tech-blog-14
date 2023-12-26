@@ -25,7 +25,7 @@ async function createComment(req, res) {
     res.status(200).json(comment);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -41,7 +41,7 @@ async function updateComment(req, res) {
     res.status(200).json(comment);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -54,7 +54,7 @@ async function deleteComment(req, res) {
     res.status(200).json(comment);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 

@@ -28,7 +28,7 @@ async function showHome(req, res) {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
     // throw Error(error);
   }
 }
@@ -68,7 +68,7 @@ async function showDashboard(req, res) {
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
     // throw Error(error);
   }
 }
@@ -84,7 +84,7 @@ async function showProfile(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
     // throw Error(error);
   }
 }

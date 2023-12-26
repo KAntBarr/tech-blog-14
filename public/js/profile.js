@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Reload the page or update the UI as needed
         document.location.replace(`/`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
       }
     } catch (error) {
       console.error('Error deleting user:', error);
@@ -53,12 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/profile`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
-      console.error('Error updating password:', error);
-      alert('Error updating password\n' + error);
+      console.error('Error updating password:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Error updating password\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
       // Handle unexpected errors
     }
   };
@@ -98,12 +98,12 @@ document.addEventListener('DOMContentLoaded', () => {
         // Handle success, e.g., show a success message or redirect to another page
         document.location.replace(`/profile`);
       } else {
-        throw new Error(response.statusText);
+        throw new Error((await response.json()).error);
         // Handle failure, e.g., show an error message to the user
       }
     } catch (error) {
-      console.error('Error updating user:', error);
-      alert('Error updating user\n' + error);
+      console.error('Error updating user:', String(error).replace(new RegExp('Error: ', 'g'), ''));
+      alert('Error updating user\n' + String(error).replace(new RegExp('Error: ', 'g'), ''));
       // Handle unexpected errors
     }
   }

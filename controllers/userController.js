@@ -60,7 +60,7 @@ async function createUser(req, res) {
     // req.session.failedSignUp = true;
     // req.session.failedLogin = false;
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -79,7 +79,7 @@ async function updateUser(req, res) {
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -92,7 +92,7 @@ async function updateUserPassword(req, res) {
     res.status(200).json(user);
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -108,7 +108,7 @@ async function deleteUser(req, res) {
     });
   } catch (error) {
     console.log(error);
-    res.status(500).json(error);
+    res.status(500).json({error: `${error}`});
   }
 }
 
@@ -134,13 +134,14 @@ async function loginUser(req, res) {
         'File: user-routes.js ~ req.session.save ~ req.session.cookie',
         req.session.cookie
       );
-      res.status(200).json(user);
+      res.status(200).json({error: `${error}`});
     });
   } catch (error) {
     // req.session.failedSignUp = false;
     // req.session.failedLogin = true;
     console.log(error);
-    res.status(500).json(error);
+    // res.status(500).json({error});
+    res.status(500).json({error: `${error}`});
   }
 }
 
