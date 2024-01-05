@@ -4,6 +4,8 @@
 ## Description
 Tech blog is a web application where users can post new articles discussing new and emerging technologies. This will help young and old stay up to date with what is happening in the industry. Users can also comment on any articles to include more information or simply their opinions.
 
+![image](https://github.com/KAntBarr/tech-blog-14/assets/70618192/5a9a3f7d-d161-4ff4-8c24-d13986bde601)
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
@@ -18,7 +20,8 @@ Tech blog is a web application where users can post new articles discussing new 
 - In the install directory, run "npm i" and then run "npm start" to begin the express server that will host the app.
 
 ## Usage
-Visit the server's url and sign up to create a profile if the user is new to the site. Users can view all posts/comments, but can only create, update, delete their own posts/comments.
+- Visit the server's url and sign up to create a profile if the user is new to the site. Users can view all posts/comments, but can only create, update, delete their own posts/comments.
+- https://tech-blog-ucb-92de467f20ab.herokuapp.com
 
 ## Credits
 - Node Packages:
