@@ -8,7 +8,6 @@
     "empty": "node ./server_fresh.js",
     "emptymon": "nodemon ./server_fresh.js",
     "start": "node ./server.js",
-    "seed": "node seeds/seed.js",
     "watch": "nodemon ./server.js"
   },
   "keywords": [],
